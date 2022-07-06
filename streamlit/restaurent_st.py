@@ -6,8 +6,12 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.ensemble import GradientBoostingRegressor
 from time import time
 
-
+import Regressor
 import Meals
+
+regressor = Regressor.MakeReg()
+
+
 with st.sidebar:
     with st.echo():
         st.write("This code will be printed to the sidebar.")
@@ -25,23 +29,34 @@ option = st.selectbox(
     '원하는 모델을 골라주세요.',
     models
 )
-RFR_params = {'n_estimators': [100, 500],
-              'max_depth' : [10, 50],
-              'max_features' : [0.0, 1.0],
-              }
+#n_estimators, criterion, max_depth, max_features
+#min_samples_leaf, random_state
+DTR_h_params = {
+            'max_depth' : [10, 50],
+            'max_features' : [0.0, 1.0],
+            'min_samples_leaf': [1, 10],
+            'random_state' : [1, 100],
+}
+RFR_h_params = DTR_h_params.copy()
+RFR_h_params['n_estimators'] = [100, 500]
 
+params = {}
 if option == 'DecisionTreeRegressor':
-    pass
-elif option =='RandomForestRegressor':
-    for key, value in RFR_params.items():
-        bar = st.slider(key, 
+    params.clear()
+    for key, value in DTR_h_params.items():
+        params[key] = st.slider(key, 
         value[0], value[1], value[0])
-elif option == 'GradientBoostingRegressor':
-    for key, value in RFR_params.items():
-        bar = st.slider(key,
-        0.0, 1.0, 0.0)
-DTR_params = {}
-GBR_params = {}
+    
+    model = 
+    
+elif option =='RandomForestRegressor':
+    params.clear()
+    for key, value in RFR_h_params.items():
+        params[key] = st.slider(key, 
+        value[0], value[1], value[0])
+
+for key, value in params.items():
+    st.write(key, value)
 
 st.write(option)
 
