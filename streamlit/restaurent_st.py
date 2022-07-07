@@ -48,15 +48,15 @@ if option == 'DecisionTreeRegressor':
     for key, value in DTR_h_params.items():
         params[key] = st.slider(key, 
         value[0], value[1], value[0])
-    
     st.write(regressor.getDTR(params))
+    
 
     
     
 elif option =='RandomForestRegressor':
     params.clear()
     for key, value in RFR_h_params.items():
-        params[key] = st.slider(key, 
+        params[key] = st.slider(key,
         value[0], value[1], value[0])
 
     st.write(regressor.getRFR(params))
