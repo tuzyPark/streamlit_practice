@@ -25,10 +25,12 @@ models = ('DecisionTreeRegressor',
          'GradientBoostingRegressor',
          'lightGBM',
          'XGBoost')
+
 option = st.selectbox(
     '원하는 모델을 골라주세요.',
     models
 )
+st.write(f'option = {option}')
 #n_estimators, criterion, max_depth, max_features
 #min_samples_leaf, random_state
 DTR_h_params = {
@@ -47,7 +49,9 @@ if option == 'DecisionTreeRegressor':
         params[key] = st.slider(key, 
         value[0], value[1], value[0])
     
-    model = 
+    st.write(regressor.getDTR(params))
+
+    
     
 elif option =='RandomForestRegressor':
     params.clear()
@@ -55,11 +59,12 @@ elif option =='RandomForestRegressor':
         params[key] = st.slider(key, 
         value[0], value[1], value[0])
 
+    st.write(regressor.getRFR(params))
 for key, value in params.items():
     st.write(key, value)
 
 st.write(option)
-
+st.write(params)
 
 st.markdown('Streamlit is **_really_ cool**.')
 st.write("Here's our first attempt at using data to create a table:")

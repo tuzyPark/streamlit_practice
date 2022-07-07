@@ -15,16 +15,36 @@ DTR_param ={
     
 }
 class MakeReg:
-    def __init__():
+    def __init__(self):
         pass
 
     def getDTR(self, params):
-        #criterion, max_depth, max_features
+        #max_depth, max_features
         #min_samples_leaf, random_state
-        return DecisionTreeRegressor()
+        return DecisionTreeRegressor(
+            max_depth=params['max_depth'],
+            max_features=params['max_features'],
+            min_samples_leaf = params['min_samples_leaf'],
+            random_state=params['random_state'],
+        )
 
 
     def getRFR(self, params):
         #n_estimators, criterion, max_depth, max_features
         #min_samples_leaf, random_state
-        return RandomForestRegressor()
+        return RandomForestRegressor(
+            max_depth=params['max_depth'],
+            max_features=params['max_features'],
+            min_samples_leaf = params['min_samples_leaf'],
+            random_state=params['random_state'],
+            n_estimators=params['n_estimators'],
+        )
+
+params = {'min_samples_leaf' : 3,
+    'max_depth' : 2,
+    'max_features': 0.7,
+    'random_state' : 42,
+}
+
+
+print(MakeReg().getDTR(params))
